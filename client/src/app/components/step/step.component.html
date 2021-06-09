@@ -1,0 +1,6 @@
+<mat-card [matBadge]="''+stepNumber" [matBadgePosition]="'before'">
+  {{ step }}
+  <button mat-icon-button (click)="onClickDelete()" *ngIf="canDelete">
+    <mat-icon>delete</mat-icon>
+  </button>
+</mat-card>

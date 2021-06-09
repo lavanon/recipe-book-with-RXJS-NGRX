@@ -1,0 +1,46 @@
+.details {
+  padding: 24px 16px;
+
+  &__top {
+    display: flex;
+
+    &__left {
+      width: 66%;
+    }
+
+    &__right {
+      width: 33%;
+    }
+  }
+
+  &__cover-image {
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__ingredients {
+    margin-bottom: 24px;
+  }
+
+  &__steps {
+    margin-bottom: 24px;
+
+    &__item {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      &:not(:last-of-type) {
+        margin-right: 8px;
+      }
+    }
+  }
+}

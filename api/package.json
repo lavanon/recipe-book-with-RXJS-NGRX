@@ -1,0 +1,13 @@
+{
+  "name": "recipe-book",
+  "version": "0.0.0",
+  "author": "Taylor Buckner <taylora.buckner@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "json-server ./db.json",
+    "json-server": "json-server"
+  },
+  "devDependencies": {
+    "json-server": "^0.16.3"
+  }
+}

@@ -1,0 +1,85 @@
+.edit {
+  padding: 24px 16px;
+
+  .mat-divider {
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  &__top {
+    display: flex;
+
+    &__left {
+      flex: 1;
+    }
+
+    &__right {
+      max-width: 33%;
+      min-width: 150px;
+      position: relative;
+      margin-left: 16px;
+      cursor: pointer;
+      background: whitesmoke;
+
+      img {
+        width: calc(100% - #{16px * 2});
+        margin: 16px;
+      }
+
+      &::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.13);
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: all 0.2s cubic-bezier(0.77, 0, 0.175, 1);
+      }
+
+      &:hover {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__section {
+    &--actions {
+      display: flex;
+      align-items: center;
+    }
+
+    &__fields {
+      flex: 1;
+      margin-right: 8px;
+      display: flex;
+      align-items: center;
+
+      .mat-form-field {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  &__additional-images {
+    img {
+      max-height: 48px;
+
+      &:not(:last-of-type) {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

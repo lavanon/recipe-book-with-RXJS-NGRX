@@ -1,0 +1,10 @@
+.recipe-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  gap: 16px;
+
+  &__item {
+    // max-width: 200px;
+  }
+}

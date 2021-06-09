@@ -1,0 +1,19 @@
+@import "~@angular/material/theming";
+
+.recipe-list-item {
+  max-width: 600px;
+
+  &:hover {
+    @include mat-elevation(3);
+  }
+
+  &__title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  &__description {
+    font-size: 14px;
+    font-weight: 300;
+  }
+}

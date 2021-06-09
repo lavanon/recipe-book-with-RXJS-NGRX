@@ -1,0 +1,13 @@
+<mat-card class="recipe-list-item mat-elevation-z1">
+  <img mat-card-image [src]="recipe.coverImageUrl">
+  <mat-card-content>
+    <div class="recipe-list-item__title">{{ recipe.title }}</div>
+    <p class="recipe-list-item__description">
+      {{ recipe.description }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions class="recipe-list-item__actions">
+    <button mat-stroked-button [routerLink]="[recipe.id]">View</button>
+    <button mat-stroked-button [routerLink]="[recipe.id, 'edit']">Edit</button>
+  </mat-card-actions>
+</mat-card>

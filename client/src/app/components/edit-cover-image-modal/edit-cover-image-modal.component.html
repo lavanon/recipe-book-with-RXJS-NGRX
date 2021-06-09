@@ -1,0 +1,14 @@
+<div class="edit-cover-image-modal">
+  <h3 class="edit-cover-image-modal__title">Update Cover Image</h3>
+  <div class="edit-cover-image-modal__form">
+    <mat-form-field appearance="outline" class="connection-status-filters__item">
+      <mat-label>New Cover Image URL</mat-label>
+      <input matInput [(ngModel)]="newCoverImageUrl">
+      <mat-error></mat-error>
+    </mat-form-field>
+    <div class="edit-cover-image-modal__actions">
+      <button mat-stroked-button (click)="onClickCancel()">Cancel</button>
+      <button mat-stroked-button (click)="onClickSubmit()">Submit</button>
+    </div>
+  </div>
+</div>

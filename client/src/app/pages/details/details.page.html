@@ -1,0 +1,27 @@
+<div class="details" *ngIf="recipe$ | async as recipe">
+  <div class="details__top">
+    <div class="details__top__left">
+      <h1 class="details__title">{{ recipe.title }}</h1>
+      <h3 class="details__description">{{ recipe.description }}</h3>
+    </div>
+    <div class="details__top__right">
+      <div class="details__cover-image">
+        <img [src]="recipe.coverImageUrl">
+      </div>
+    </div>
+  </div>
+  <div class="details__ingredients">
+    <h3>Ingredients</h3>
+    <app-ingredients-list [ingredients]="recipe.ingredients"></app-ingredients-list>
+  </div>
+  <div class="details__steps">
+    <h3>Steps</h3>
+    <div class="details__steps__item" *ngFor="let recipeStep of recipe.steps; let i = index;">
+      <app-step [step]="recipeStep" [stepIndex]="i"></app-step>
+    </div>
+  </div>
+  <div class="details__actions">
+    <button mat-stroked-button [routerLink]="['./edit']">Edit</button>
+    <button mat-stroked-button>Delete</button>
+  </div>
+</div>

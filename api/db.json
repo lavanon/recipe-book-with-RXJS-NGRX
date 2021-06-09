@@ -1,0 +1,116 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Peanut Butter and Jelly",
+      "description": "A super simple and quick snack!",
+      "coverImageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/ca/PBJ.png",
+      "additionalImageUrls": [
+        "https://goldmarketny.com/wp-content/uploads/2018/10/peanut-butter-and-jelly-sandwich-png-8.png",
+        "https://thumbor.thedailymeal.com/iZlfJ_imxt4Ao65hk76VtfTyYWQ=//https://www.thedailymeal.com/sites/default/files/story/2018/iStock-530877833.jpg",
+        "https://i3.wp.com/www.cookiedoughandovenmitt.com/wp-content/uploads/2017/07/toasted-peanut-butter-and-jelly-sandwich-2-picture.jpg"
+      ],
+      "ingredients": [
+        {
+          "name": "Bread",
+          "quantity": 2,
+          "units": "slices"
+        },
+        {
+          "name": "Peanut Butter",
+          "quantity": 2,
+          "units": "tablespoons"
+        },
+        {
+          "name": "Jelly",
+          "quantity": 1,
+          "units": "tablespoons"
+        }
+      ],
+      "steps": [
+        "Spread the Peanut Butter on one slice of bread.",
+        "Spread the Jelly or Jam on the other slice of bread.",
+        "Slap the two slices of bread together.",
+        "Maunch."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Spaghetti",
+      "description": "An easy weeknight meal, sure to delight your kids!",
+      "coverImageUrl": "https://pngimg.com/uploads/spaghetti/spaghetti_PNG24.png",
+      "additionalImageUrls": [
+        "https://lh3.googleusercontent.com/proxy/4W93qBTrwyjusKOCbJxClhhOgCRY7MNAFrUWrdYWbW9ALRmTOoiRZVcuZIq5hQvpno2POvmcpFDgbo6wNy4S7Bjs-dqAUc4vvZAKTSNVfSk-_zyJdXzr2YYI",
+        "https://www.thewholesomedish.com/wp-content/uploads/2020/08/The-Best-Classic-Spaghetti-1200-500x375.jpg",
+        "https://i0.wp.com/www.eatthis.com/wp-content/uploads/2019/01/healthy-spaghetti-spicy-tomato-sauce.jpg?fit=1200%2C879&ssl=1"
+      ],
+      "ingredients": [
+        {
+          "name": "Spaghetti Noodles",
+          "quantity": 1,
+          "units": "box"
+        },
+        {
+          "name": "Tomato Sauce",
+          "quantity": 1,
+          "units": "jar"
+        }
+      ],
+      "steps": [
+        "Boil a large pot of water.",
+        "Heavily salt the water.",
+        "Drop your pasta, and cook as directed.",
+        "Drain the pasta, and return to cooking pot",
+        "Add Tomato Sauce, and stir to combine."
+      ]
+    },
+    {
+      "title": "Cheese Burger",
+      "description": "A cookout classic. You can't go wrong with this one!",
+      "coverImageUrl": "https://www.mcdonalds.com/is/image/content/dam/usa/nfl/nutrition/items/hero/desktop/t-mcdonalds-Cheeseburger.jpg",
+      "steps": [
+        "Grill your patty to the desired done-ness",
+        "Lightly toast your buns",
+        "Assemble your burger"
+      ],
+      "ingredients": [
+        {
+          "name": "Buns",
+          "quantity": 1,
+          "units": "bun"
+        },
+        {
+          "name": "Patty",
+          "quantity": 1,
+          "units": "patty"
+        },
+        {
+          "name": "Cheese",
+          "quantity": 1,
+          "units": "slice"
+        },
+        {
+          "name": "Lettuce",
+          "quantity": 2,
+          "units": "leaves"
+        },
+        {
+          "name": "Tomato",
+          "quantity": 1,
+          "units": "slice"
+        },
+        {
+          "name": "Pickles",
+          "quantity": 2,
+          "units": "chips"
+        }
+      ],
+      "additionalImageUrls": [
+        "https://www.foodrepublic.com/wp-content/uploads/2012/03/033_FR11785.jpg",
+        "https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/master/pass/Smashburger-recipe-120219.jpg",
+        "https://i.pinimg.com/originals/b6/51/c4/b651c473c595f728118644568221637e.jpg"
+      ],
+      "id": 3
+    }
+  ]
+}
