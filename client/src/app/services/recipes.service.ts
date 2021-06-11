@@ -37,10 +37,18 @@ export class RecipesService {
     ).subscribe();
   }
 
+  public createRecipe(id: number | string, nextRecipe: RecipeModel) {
+    const url = `${this.API_BASE_URL}/recipes`;
+    this.http.post<RecipeModel>(url, nextRecipe).pipe(
+      tap(recipe => this.selected$.next(recipe))
+    ).subscribe();
+  }
+
   public deleteRecipe(id: number | string) {
     const url = `${this.API_BASE_URL}/recipes/${id}`;
     this.http.delete<RecipeModel>(url).pipe(
       tap(recipe => this.selected$.next(recipe))
     ).subscribe();
 }
+
 }

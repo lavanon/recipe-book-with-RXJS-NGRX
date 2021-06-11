@@ -1,0 +1,91 @@
+<div class="create">
+  <form [formGroup]="form" >
+    <div class="create__top">
+      <div class="create__top__left">
+        <mat-form-field appearance="outline" class="connection-status-filters__item">
+          <mat-label>Title</mat-label>
+          <input matInput [formControlName]="FORM_CONTROL_NAMES.Title">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="connection-status-filters__item">
+          <mat-label>Description</mat-label>
+          <input matInput [formControlName]="FORM_CONTROL_NAMES.Description">
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+      <div class="create__top__right" (click)="onClickCoverImage()">
+        <img [src]="displayedCoverImageUrl">
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+    <h3>Ingredients</h3>
+    <div class="create__section--actions" [formGroup]="nextIngredientFormGroup">
+      <div class="create__section__fields">
+        <mat-form-field appearance="outline">
+          <mat-label>Quantity</mat-label>
+          <input matInput [formControlName]="INGREDIENT_SUB_FORM_CONTROL_NAMES.Quantity">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Ingredient Name</mat-label>
+          <input matInput [formControlName]="INGREDIENT_SUB_FORM_CONTROL_NAMES.Name">
+          <mat-error></mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Units</mat-label>
+          <input matInput [formControlName]="INGREDIENT_SUB_FORM_CONTROL_NAMES.Units">
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+      <div class="create__section__actions"><button mat-stroked-button (click)="onClickAddIngredient()">Add
+          Ingredient</button></div>
+    </div>
+    <app-ingredients-list [ingredients]="ingredients" [canDelete]="true" (delete)="onDeleteIngredient($event)">
+    </app-ingredients-list>
+
+    <mat-divider></mat-divider>
+    <h3>Steps</h3>
+    <div class="create__section--actions">
+      <div class="create__section__fields">
+        <mat-form-field appearance="outline">
+          <mat-label>New Step</mat-label>
+          <input matInput [formControlName]="FORM_CONTROL_NAMES.NextStep">
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+      <div class="create__section__actions">
+        <button mat-stroked-button (click)="onClickAddStep()">Add Step</button>
+      </div>
+    </div>
+    <app-step *ngFor="let step of steps; let i = index" [step]="step" [stepIndex]="i" [canDelete]="true"
+      (delete)="onDeleteStep($event)"></app-step>
+
+    <mat-divider></mat-divider>
+    <h3>Additional Images</h3>
+    <div class="create__section--actions">
+      <div class="create__section__fields">
+        <mat-form-field appearance="outline">
+          <mat-label>Additional Image URL</mat-label>
+          <input matInput [formControlName]="FORM_CONTROL_NAMES.NextAdditionalImageUrl">
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+      <div class="create__section__actions">
+        <button mat-stroked-button (click)="onClickAddAdditionalImage()">Add
+          Image</button>
+      </div>
+    </div>
+    <div class="create__additional-images">
+      <div class="create__additional-images__item" *ngFor="let imageUrl of additionalImageUrls; let i = index;">
+        <img class="create__additional-images__image" [src]="imageUrl">
+        <button mat-icon-button (click)="onClickDeleteAdditionalImage(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+  <div class="create__actions">
+    <button mat-raised-button color="primary" (click)="onClickSave()">Save</button>
+  </div>
+</div>
