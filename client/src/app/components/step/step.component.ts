@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class StepComponent implements OnInit {
   @Input() canDelete = false;
+  @Input() isStationary = true;
   @Output() delete = new EventEmitter<number>();
   @Input() steps: Array<string>;
 

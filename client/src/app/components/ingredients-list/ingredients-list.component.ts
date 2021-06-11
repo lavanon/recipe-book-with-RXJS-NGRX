@@ -10,6 +10,8 @@ import { IngredientModel } from '../../../../../shared/models/ingredient.model';
 export class IngredientsListComponent implements OnInit {
   @Input() public ingredients: Array<IngredientModel>;
   @Input() public canDelete = false;
+  @Input() isStationary = true;
+
   @Output() public delete = new EventEmitter<number>();
 
   constructor() { }
