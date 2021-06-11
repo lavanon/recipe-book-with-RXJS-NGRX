@@ -80,7 +80,7 @@
       <div class="create__additional-images__item" *ngFor="let imageUrl of additionalImageUrls; let i = index;">
         <img class="create__additional-images__image" [src]="imageUrl">
         <button mat-icon-button (click)="onClickDeleteAdditionalImage(i)">
-          <mat-icon>delete</mat-icon>
+          <mat-icon mat-icon-button color="warn" matTooltip="Delete image" matTooltipPosition="right">delete</mat-icon>
         </button>
       </div>
     </div>

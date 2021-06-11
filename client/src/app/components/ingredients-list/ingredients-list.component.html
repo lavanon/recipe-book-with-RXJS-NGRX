@@ -3,7 +3,7 @@
     <mat-list-item class="ingredients-list__item" *ngFor="let ingredient of ingredients; let i = index;">
       {{ ingredient.quantity }} {{ ingredient.units }} of {{ ingredient.name }}
       <button mat-icon-button (click)="onClickDelete(i)" *ngIf="canDelete">
-        <mat-icon>delete</mat-icon>
+        <mat-icon mat-icon-button color="warn" matTooltip="Delete ingredient" matTooltipPosition="right" >delete</mat-icon>
       </button>
     </mat-list-item>
   </mat-list>

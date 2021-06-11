@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { LandingPage } from './pages/landing/landing.page';
 import { HomePage } from './pages/home/home.page';
@@ -39,6 +40,7 @@ export const APPLICATION_MAT_IMPORTS = [
   MatListModule,
   MatIconModule,
   MatDialogModule,
+  MatTooltipModule
 ];
 
 @NgModule({
