@@ -55,9 +55,7 @@ export class DetailsPage implements OnInit, OnDestroy {
           tap(recipeId => this.recipesService.deleteRecipe(recipeId)),
           takeUntil(this._unsubscribe)
         ).subscribe(result => {
-
           setTimeout(() => this.router.navigate(['/home']),200)
-
         });
       }
     });

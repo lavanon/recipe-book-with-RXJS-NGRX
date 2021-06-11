@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -6,19 +7,25 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./step.component.scss']
 })
 export class StepComponent implements OnInit {
-  @Input() public step: string;
-  @Input() public stepIndex: number;
   @Input() canDelete = false;
   @Output() delete = new EventEmitter<number>();
-  public stepNumber: number;
+  @Input() steps: Array<string>;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.stepNumber = this.stepIndex + 1;
   }
 
-  public onClickDelete() {
-    this.delete.emit(this.stepIndex);
+
+  public onClickDelete(index: number) {
+    this.delete.emit(index);
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.steps, event.previousIndex, event.currentIndex);
+}
+
+  super(index) {
+    return index + 1;
   }
 }

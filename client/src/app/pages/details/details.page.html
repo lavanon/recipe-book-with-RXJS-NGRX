@@ -32,8 +32,8 @@
   </div>
   <div class="details__steps">
     <h3>Steps</h3>
-    <div class="details__steps__item" *ngFor="let recipeStep of recipe.steps; let i = index;">
-      <app-step [step]="recipeStep" [stepIndex]="i"></app-step>
+    <div class="details__steps__item" >
+      <app-step [steps]="recipe.steps"></app-step>
     </div>
   </div>
   <div class="details__actions">

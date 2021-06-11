@@ -1,6 +1,9 @@
-<mat-card [matBadge]="''+stepNumber" [matBadgePosition]="'before'">
-  {{ step }}
-  <button mat-icon-button (click)="onClickDelete()" *ngIf="canDelete">
-    <mat-icon mat-icon-button color="warn" matTooltip="Delete steps" matTooltipPosition="right" >delete</mat-icon>
-  </button>
-</mat-card>
+<div class="steps-list" cdkDropList (cdkDropListDropped)="drop($event)">
+  <div [matBadge]="super(i)" matBadgePosition="before"class="steps-list__box" *ngFor="let step of steps; let i = index ;" cdkDrag>
+    <div class="steps-list__box__placeholder" *cdkDragPlaceholder></div>
+      <span >   {{ step }}</span>
+      <button mat-icon-button (click)="onClickDelete(i)" *ngIf="canDelete">
+        <mat-icon mat-icon-button color="warn" matTooltip="Delete steps" matTooltipPosition="right" >delete</mat-icon>
+    </button>
+  </div>
+</div>
