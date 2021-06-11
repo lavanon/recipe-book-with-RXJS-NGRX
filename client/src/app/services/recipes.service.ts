@@ -36,4 +36,11 @@ export class RecipesService {
       tap(recipe => this.selected$.next(recipe))
     ).subscribe();
   }
+
+  public deleteRecipe(id: number | string) {
+    const url = `${this.API_BASE_URL}/recipes/${id}`;
+    this.http.delete<RecipeModel>(url).pipe(
+      tap(recipe => this.selected$.next(recipe))
+    ).subscribe();
+}
 }

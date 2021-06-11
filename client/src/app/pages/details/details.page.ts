@@ -29,4 +29,10 @@ export class DetailsPage implements OnInit {
     );
   }
 
+  public deleteRecipe() {
+    this.id$.pipe(
+      tap(recipeId => this.recipesService.deleteRecipe(recipeId)),
+    ).subscribe();
+    this.router.navigate(['/home']);
+  }
 }
