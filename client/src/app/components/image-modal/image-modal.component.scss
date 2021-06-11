@@ -1,0 +1,22 @@
+.image-modal {
+  &__form {
+    display: block;
+
+    &__image{
+      max-width: 1100px;
+      max-height: 700px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+
+    button {
+      &:not(:last-of-type) {
+        margin-right: 8px;
+      }
+    }
+
+  }
+}

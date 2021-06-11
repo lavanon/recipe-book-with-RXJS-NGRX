@@ -3,6 +3,22 @@
     <div class="details__top__left">
       <h1 class="details__title">{{ recipe.title }}</h1>
       <h3 class="details__description">{{ recipe.description }}</h3>
+      <h3>Additional Images</h3>
+      <div class="details__imageGrid">
+        <div *ngFor="let imageUrl of recipe.additionalImageUrls; let i = index;" class="details__imageGrid__gridItem">
+          <ng-template #forgottenImage>
+            <img
+              [src]="'https://via.placeholder.com/150x150.png'"
+              class="details__imageGrid__gridItem__image" />
+          </ng-template>
+          <ng-container *ngIf="imageUrl as imageContent; else: forgottenImage">
+              <img
+                  [src]="imageContent"
+                  (click)="clickImage(imageContent)"
+                  class="details__imageGrid__gridItem__image" />
+          </ng-container>
+        </div>
+      </div>
     </div>
     <div class="details__top__right">
       <div class="details__cover-image">

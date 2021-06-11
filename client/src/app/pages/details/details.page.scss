@@ -33,6 +33,29 @@
     }
   }
 
+  &__imageGrid {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__gridItem {
+      height: 150px;
+      width: 150px;
+      display: grid;
+      padding: 8px;
+      align-content: center;
+      align-items: center;
+      text-align: center;
+
+      &__image {
+        object-fit: cover;
+        height: 150px;
+        width: 150px;
+      }
+    }
+  }
+
+
+
   &__actions {
     display: flex;
     justify-content: flex-end;
@@ -44,3 +67,4 @@
     }
   }
 }
+

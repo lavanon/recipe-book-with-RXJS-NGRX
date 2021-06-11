@@ -26,6 +26,7 @@ import { StepComponent } from './components/step/step.component';
 import { EditPage } from './pages/edit/edit.page';
 import { IngredientsListComponent } from './components/ingredients-list/ingredients-list.component';
 import { EditCoverImageModalComponent } from './components/edit-cover-image-modal/edit-cover-image-modal.component';
+import { ImageModalComponent } from './components/image-modal/image-modal.component';
 
 export const APPLICATION_MAT_IMPORTS = [
   MatToolbarModule,
@@ -51,6 +52,7 @@ export const APPLICATION_MAT_IMPORTS = [
     EditPage,
     IngredientsListComponent,
     EditCoverImageModalComponent,
+    ImageModalComponent
   ],
   imports: [
     BrowserModule,
