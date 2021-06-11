@@ -30,6 +30,7 @@ import { EditCoverImageModalComponent } from './components/edit-cover-image-moda
 import { CreatePage } from './pages/create/create.page';
 import { ImageModalComponent } from './components/image-modal/image-modal.component';
 import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 export const APPLICATION_MAT_IMPORTS = [
   MatToolbarModule,
@@ -41,7 +42,11 @@ export const APPLICATION_MAT_IMPORTS = [
   MatListModule,
   MatIconModule,
   MatDialogModule,
-  MatTooltipModule
+  MatTooltipModule,
+
+  // CDK
+  DragDropModule
+
 ];
 
 @NgModule({
@@ -58,7 +63,7 @@ export const APPLICATION_MAT_IMPORTS = [
     EditCoverImageModalComponent,
     CreatePage,
     ImageModalComponent,
-    ConfirmDeleteModalComponent
+    ConfirmDeleteModalComponent,
   ],
   imports: [
     BrowserModule,
