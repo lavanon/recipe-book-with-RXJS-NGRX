@@ -1,4 +1,6 @@
 # Give me a heads up for what you would like to see :D
+- Making the steps, ingredients and (maybe images) drag and droppable https://v7.material.angular.io/cdk/drag-drop/overview
+
 - CRUD NGRX
 - ENTITY Simple state management
 - Different way to impliment images
