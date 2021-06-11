@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
+import { Subject } from 'rxjs/internal/Subject';
+import { map, takeUntil, tap } from 'rxjs/operators';
+import { ConfirmDeleteModalComponent } from 'src/app/components/confirm-delete-modal/confirm-delete-modal.component';
 import { ImageModalComponent } from 'src/app/components/image-modal/image-modal.component';
 import { RecipesService } from 'src/app/services/recipes.service';
 
@@ -10,7 +12,8 @@ import { RecipesService } from 'src/app/services/recipes.service';
   templateUrl: './details.page.html',
   styleUrls: ['./details.page.scss']
 })
-export class DetailsPage implements OnInit {
+export class DetailsPage implements OnInit, OnDestroy {
+  private readonly _unsubscribe = new Subject();
 
   constructor(
     private recipesService: RecipesService,
@@ -26,7 +29,13 @@ export class DetailsPage implements OnInit {
   ngOnInit(): void {
     this.id$.pipe(
       tap(recipeId => this.recipesService.getOneRecipe(recipeId)),
+      takeUntil(this._unsubscribe)
     ).subscribe();
+  }
+
+  ngOnDestroy() {
+    this._unsubscribe.next();
+    this._unsubscribe.complete();
   }
 
   private get id$() {
