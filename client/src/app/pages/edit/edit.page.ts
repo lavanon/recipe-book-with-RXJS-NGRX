@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, map, take, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
+import { filter, map, switchMap, take, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { IngredientModel } from '../../../../../shared/models/ingredient.model';
 import { RecipeModel } from '../../../../../shared/models/recipe.model';
@@ -106,9 +106,8 @@ export class EditPage implements OnInit, OnDestroy {
 
     this.recipe$.pipe(
       take(1),
-      map(recipe => {
-        const mergedRecipe = merge(recipe, nextRecipe);
-        this.recipesService.updateRecipe(recipe.id, mergedRecipe);
+      switchMap(recipe => {
+        return this.recipesService.getRecipeObservableForUpdating(recipe.id, nextRecipe)
       }),
       tap(() => this.router.navigate(['../'], { relativeTo: this.route })),
       takeUntil(this._unsubscribe)

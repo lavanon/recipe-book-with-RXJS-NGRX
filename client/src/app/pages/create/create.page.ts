@@ -94,7 +94,7 @@ export class CreatePage implements OnInit {
     this.recipe$.pipe(
       take(1),
       switchMap(recipe => {
-        return this.recipesService.getRecipeObs(nextRecipe);
+        return this.recipesService.getRecipeObservableForCreate(nextRecipe);
       }),
       tap(() => this.router.navigate([`./recipes/${nextRecipe.id}`]))
     ).subscribe();

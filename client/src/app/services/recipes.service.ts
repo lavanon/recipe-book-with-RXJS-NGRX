@@ -31,14 +31,13 @@ export class RecipesService {
   }
 
   public updateRecipe(id: number | string, nextRecipe: Partial<RecipeModel>) {
-    const url = `${this.API_BASE_URL}/recipes/${id}`;
-    this.http.put<RecipeModel>(url, nextRecipe).pipe(
+    this.getRecipeObservableForUpdating(id, nextRecipe).pipe(
       tap(recipe => this.selected$.next(recipe))
     ).subscribe();
   }
 
-  public createRecipe(id: number | string, nextRecipe: RecipeModel) {
-    this.getRecipeObs(nextRecipe).pipe(
+  public createRecipe(nextRecipe: RecipeModel) {
+    this.getRecipeObservableForCreate(nextRecipe).pipe(
       tap(recipe => this.selected$.next(recipe))
     ).subscribe();
   }
@@ -50,8 +49,13 @@ export class RecipesService {
     ).subscribe();
 }
 
-public getRecipeObs(nextRecipe): Observable<RecipeModel> {
-  const url = `${this.API_BASE_URL}/recipes`;
-  return this.http.post<RecipeModel>(url,nextRecipe);
-}
+  public getRecipeObservableForCreate(nextRecipe: RecipeModel): Observable<RecipeModel> {
+    const url = `${this.API_BASE_URL}/recipes`;
+    return this.http.post<RecipeModel>(url, nextRecipe);
+  }
+
+  public getRecipeObservableForUpdating(id: number | string, nextRecipe: Partial<RecipeModel>): Observable<RecipeModel> {
+    const url = `${this.API_BASE_URL}/recipes/${id}`;
+    return this.http.put<RecipeModel>(url, nextRecipe);
+  }
 }
