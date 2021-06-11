@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { RecipesService } from 'src/app/services/recipes.service';
+import { RecipeModel } from '../../../../../shared/models/recipe.model';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +17,7 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.recipesService.getRecipes();
+    this.recipesService.selected$ = new BehaviorSubject<RecipeModel>(undefined);
   }
 
 }
