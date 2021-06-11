@@ -7,7 +7,6 @@
   <ng-container *ngIf="recipe.coverImageUrl as imageContent; else: forgottenImage">
       <img
           [src]="imageContent"
-          (click)="clickImage(recipe.coverImageUrl)"
           class="recipe-list-item__image" />
   </ng-container>
   <mat-card-content>
