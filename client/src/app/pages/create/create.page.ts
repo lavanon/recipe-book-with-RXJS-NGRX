@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { filter, map, take, tap } from 'rxjs/operators';
+import { filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { IngredientModel } from '../../../../../shared/models/ingredient.model';
 import { RecipeModel } from '../../../../../shared/models/recipe.model';
@@ -93,8 +93,8 @@ export class CreatePage implements OnInit {
 
     this.recipe$.pipe(
       take(1),
-      map(recipe => {
-        this.recipesService.createRecipe(nextRecipe.id, nextRecipe);
+      switchMap(recipe => {
+        return this.recipesService.getRecipeObs(nextRecipe);
       }),
       tap(() => this.router.navigate([`./recipes/${nextRecipe.id}`]))
     ).subscribe();

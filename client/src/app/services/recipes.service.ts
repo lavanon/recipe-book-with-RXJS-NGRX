@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { RecipeModel } from '../../../../shared/models/recipe.model';
 
@@ -38,8 +38,7 @@ export class RecipesService {
   }
 
   public createRecipe(id: number | string, nextRecipe: RecipeModel) {
-    const url = `${this.API_BASE_URL}/recipes`;
-    this.http.post<RecipeModel>(url, nextRecipe).pipe(
+    this.getRecipeObs(nextRecipe).pipe(
       tap(recipe => this.selected$.next(recipe))
     ).subscribe();
   }
@@ -51,4 +50,8 @@ export class RecipesService {
     ).subscribe();
 }
 
+public getRecipeObs(nextRecipe): Observable<RecipeModel> {
+  const url = `${this.API_BASE_URL}/recipes`;
+  return this.http.post<RecipeModel>(url,nextRecipe);
+}
 }
