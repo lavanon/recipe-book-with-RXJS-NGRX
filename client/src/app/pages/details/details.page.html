@@ -38,6 +38,6 @@
   </div>
   <div class="details__actions">
     <button mat-stroked-button color="primary" [routerLink]="['./edit']">Edit</button>
-    <button mat-button style="border: 1px solid red" (click)="deleteRecipe()" color="warn">Delete</button>
+    <button mat-button style="border: 1px solid red" (click)="deleteRecipe(recipe.title)" color="warn">Delete</button>
   </div>
 </div>

@@ -1,0 +1,9 @@
+<div class="confirm-delete-modal">
+  <h3 class="confirm-delete-modal__title">{{data.title}}</h3>
+  <div class="confirm-delete-modal__form">
+    <div class="confirm-delete-modal__actions">
+      <button  mat-stroked-button [mat-dialog-close]="false" (click)="onClickCancel()">Cancel</button>
+      <button  mat-stroked-button color="warn" [mat-dialog-close]="true">Delete</button>
+    </div>
+  </div>
+</div>

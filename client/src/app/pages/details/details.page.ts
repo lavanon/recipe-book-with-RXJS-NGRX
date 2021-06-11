@@ -35,11 +35,26 @@ export class DetailsPage implements OnInit {
     );
   }
 
-  public deleteRecipe() {
-    this.id$.pipe(
-      tap(recipeId => this.recipesService.deleteRecipe(recipeId)),
-    ).subscribe();
-    this.router.navigate(['/home']);
+  public deleteRecipe( title: string) {
+    const confirmDialog = this.dialog.open(ConfirmDeleteModalComponent, {
+      data: {
+        title: `Are you sure you want to delete your ${title} recipe?`
+      }
+    });
+
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.id$.pipe(
+          tap(recipeId => this.recipesService.deleteRecipe(recipeId)),
+          takeUntil(this._unsubscribe)
+        ).subscribe(result => {
+
+          setTimeout(() => this.router.navigate(['/home']),200)
+
+        });
+      }
+    });
+
   }
 
   public clickImage(imageUrl: string) {
