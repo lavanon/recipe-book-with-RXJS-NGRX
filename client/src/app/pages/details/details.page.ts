@@ -20,8 +20,6 @@ export class DetailsPage implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog,
-
-
   ) { }
 
   public recipe$ = this.recipesService.selected$;

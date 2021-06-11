@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { filter, map, take, tap, withLatestFrom } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { filter, map, take, tap } from 'rxjs/operators';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { IngredientModel } from '../../../../../shared/models/ingredient.model';
 import { RecipeModel } from '../../../../../shared/models/recipe.model';
-import merge from 'lodash.merge';
 import { MatDialog } from '@angular/material/dialog';
 import { EditCoverImageModalComponent } from 'src/app/components/edit-cover-image-modal/edit-cover-image-modal.component';
 
@@ -40,7 +39,6 @@ export class CreatePage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private recipesService: RecipesService,
-    private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog,
   ) { }

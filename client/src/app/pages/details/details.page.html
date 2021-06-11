@@ -13,9 +13,9 @@
           </ng-template>
           <ng-container *ngIf="imageUrl as imageContent; else: forgottenImage">
               <img
-                  [src]="imageContent"
-                  (click)="clickImage(imageContent)"
-                  class="details__imageGrid__gridItem__image" />
+                [src]="imageContent"
+                (click)="clickImage(imageContent)"
+                class="details__imageGrid__gridItem__image" />
           </ng-container>
         </div>
       </div>
