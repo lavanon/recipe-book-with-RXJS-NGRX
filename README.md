@@ -1,3 +1,16 @@
+# Give me a heads up for what you would like to see :D
+- CRUD NGRX
+- ENTITY Simple state management
+- Different way to impliment images
+- refactoring the code
+- 
+
+
+
+
+
+
+
 # Recipe Book FE Challenge
 
 - [Prompt](#prompt)
