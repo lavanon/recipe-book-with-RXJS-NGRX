@@ -29,6 +29,7 @@ import { IngredientsListComponent } from './components/ingredients-list/ingredie
 import { EditCoverImageModalComponent } from './components/edit-cover-image-modal/edit-cover-image-modal.component';
 import { CreatePage } from './pages/create/create.page';
 import { ImageModalComponent } from './components/image-modal/image-modal.component';
+import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
 
 export const APPLICATION_MAT_IMPORTS = [
   MatToolbarModule,
@@ -56,7 +57,8 @@ export const APPLICATION_MAT_IMPORTS = [
     IngredientsListComponent,
     EditCoverImageModalComponent,
     CreatePage,
-    ImageModalComponent
+    ImageModalComponent,
+    ConfirmDeleteModalComponent
   ],
   imports: [
     BrowserModule,

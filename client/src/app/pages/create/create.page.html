@@ -58,8 +58,15 @@
         <button  mat-stroked-button color="primary" (click)="onClickAddStep()">Add Step</button>
       </div>
     </div>
-    <app-step *ngFor="let step of steps; let i = index" [step]="step" [stepIndex]="i" [canDelete]="true"
-      (delete)="onDeleteStep($event)"></app-step>
+    <ng-container *ngIf="steps.length === 0">
+      <mat-list-item class="ingredients-list__item">
+        There are no steps yet!
+      </mat-list-item>
+    </ng-container>
+    <ng-container *ngIf="steps.length > 0">
+      <app-step *ngFor="let step of steps; let i = index" [step]="step" [stepIndex]="i" [canDelete]="true"
+        (delete)="onDeleteStep($event)"></app-step>
+    </ng-container>
 
     <mat-divider></mat-divider>
     <h3>Additional Images</h3>
