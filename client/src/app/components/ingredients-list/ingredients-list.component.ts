@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IngredientModel } from '../../../../../shared/models/ingredient.model';
 
@@ -18,6 +19,10 @@ export class IngredientsListComponent implements OnInit {
 
   public onClickDelete(index: number) {
     this.delete.emit(index);
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.ingredients, event.previousIndex, event.currentIndex);
   }
 
 }
