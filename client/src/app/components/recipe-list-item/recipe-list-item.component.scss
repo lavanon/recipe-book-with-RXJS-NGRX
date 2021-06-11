@@ -1,7 +1,7 @@
 @import "~@angular/material/theming";
 
 .recipe-list-item {
-  max-width: 600px;
+  max-width: 580px;
 
   &:hover {
     @include mat-elevation(3);
@@ -15,5 +15,11 @@
   &__description {
     font-size: 14px;
     font-weight: 300;
+  }
+
+  &__image {
+    height: 400px;
+    width: 560px;
+    object-fit: cover;
   }
 }

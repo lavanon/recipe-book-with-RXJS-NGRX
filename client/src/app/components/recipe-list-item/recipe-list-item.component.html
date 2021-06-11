@@ -1,5 +1,15 @@
 <mat-card class="recipe-list-item mat-elevation-z1">
-  <img mat-card-image [src]="recipe.coverImageUrl">
+  <ng-template #forgottenImage>
+    <img
+      [src]="'https://via.placeholder.com/400x300.png'"
+      class="recipe-list-item__image" />
+  </ng-template>
+  <ng-container *ngIf="recipe.coverImageUrl as imageContent; else: forgottenImage">
+      <img
+          [src]="imageContent"
+          (click)="clickImage(recipe.coverImageUrl)"
+          class="recipe-list-item__image" />
+  </ng-container>
   <mat-card-content>
     <div class="recipe-list-item__title">{{ recipe.title }}</div>
     <p class="recipe-list-item__description">
