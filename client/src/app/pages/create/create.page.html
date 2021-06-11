@@ -38,7 +38,7 @@
           <mat-error></mat-error>
         </mat-form-field>
       </div>
-      <div class="create__section__actions"><button mat-stroked-button (click)="onClickAddIngredient()">Add
+      <div class="create__section__actions"><button  mat-stroked-button color="primary" (click)="onClickAddIngredient()">Add
           Ingredient</button></div>
     </div>
     <app-ingredients-list [ingredients]="ingredients" [canDelete]="true" (delete)="onDeleteIngredient($event)">
@@ -55,7 +55,7 @@
         </mat-form-field>
       </div>
       <div class="create__section__actions">
-        <button mat-stroked-button (click)="onClickAddStep()">Add Step</button>
+        <button  mat-stroked-button color="primary" (click)="onClickAddStep()">Add Step</button>
       </div>
     </div>
     <app-step *ngFor="let step of steps; let i = index" [step]="step" [stepIndex]="i" [canDelete]="true"
@@ -72,7 +72,7 @@
         </mat-form-field>
       </div>
       <div class="create__section__actions">
-        <button mat-stroked-button (click)="onClickAddAdditionalImage()">Add
+        <button  mat-stroked-button color="primary" (click)="onClickAddAdditionalImage()">Add
           Image</button>
       </div>
     </div>
