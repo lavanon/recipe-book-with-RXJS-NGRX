@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EditCoverImageModalComponent } from './edit-cover-image-modal.component';
 
@@ -6,7 +6,7 @@ describe('EditCoverImageModalComponent', () => {
   let component: EditCoverImageModalComponent;
   let fixture: ComponentFixture<EditCoverImageModalComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ EditCoverImageModalComponent ]
     })
