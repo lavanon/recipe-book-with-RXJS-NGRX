@@ -32,7 +32,7 @@ export class DetailsPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._unsubscribe.next();
+    this._unsubscribe.next(null);
     this._unsubscribe.complete();
   }
 

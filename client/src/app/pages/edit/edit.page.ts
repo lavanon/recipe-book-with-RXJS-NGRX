@@ -48,6 +48,7 @@ export class EditPage implements OnInit, OnDestroy {
     private dialog: MatDialog,
   ) { }
 
+
   public recipe$ = this.recipesService.selected$;
 
   ngOnInit(): void {
@@ -57,7 +58,7 @@ export class EditPage implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.form.reset();
-    this._unsubscribe.next();
+    this._unsubscribe.next(null);
     this._unsubscribe.complete();
   }
 
