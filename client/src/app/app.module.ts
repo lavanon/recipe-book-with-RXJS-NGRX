@@ -16,7 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { LandingPage } from './pages/landing/landing.page';
 import { HomePage } from './pages/home/home.page';
@@ -38,6 +39,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule, RECOMPUTE } from "@ngrx/store-devtools";
 import { StoreRouterConnectingModule, RouterState } from "@ngrx/router-store";
 import { environment } from 'src/environments/environment';
+import { RecipeStoreModule } from './store/recipe/recipe-store.module';
 export const APPLICATION_MAT_IMPORTS = [
   MatToolbarModule,
   MatButtonModule,
@@ -49,7 +51,7 @@ export const APPLICATION_MAT_IMPORTS = [
   MatIconModule,
   MatDialogModule,
   MatTooltipModule,
-
+  MatSnackBarModule,
   // CDK
   DragDropModule
 
@@ -82,8 +84,8 @@ export const APPLICATION_MAT_IMPORTS = [
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 25 }) : [],
-
     ...APPLICATION_MAT_IMPORTS,
+    RecipeStoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

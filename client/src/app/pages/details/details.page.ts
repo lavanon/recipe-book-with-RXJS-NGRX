@@ -6,6 +6,8 @@ import { map, takeUntil, tap } from 'rxjs/operators';
 import { ConfirmDeleteModalComponent } from 'src/app/components/confirm-delete-modal/confirm-delete-modal.component';
 import { ImageModalComponent } from 'src/app/components/image-modal/image-modal.component';
 import { RecipesService } from 'src/app/services/recipes.service';
+import { RecipeFacadeService } from 'src/app/store/recipe/recipe-facade.service';
+import { RecipeModel } from '../../../../../shared/models/recipe.model';
 
 @Component({
   selector: 'app-details',
@@ -20,6 +22,8 @@ export class DetailsPage implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog,
+    private _recipeFacadeService: RecipeFacadeService
+
   ) { }
 
   public recipe$ = this.recipesService.selected$;
@@ -42,21 +46,16 @@ export class DetailsPage implements OnInit, OnDestroy {
     );
   }
 
-  public deleteRecipe( title: string) {
+  public deleteRecipe( recipe: RecipeModel) {
     const confirmDialog = this.dialog.open(ConfirmDeleteModalComponent, {
       data: {
-        title: `Are you sure you want to delete your ${title} recipe?`
+        title: `Are you sure you want to delete your ${recipe.title} recipe?`
       }
     });
 
     confirmDialog.afterClosed().subscribe(result => {
       if (result === true) {
-        this.id$.pipe(
-          tap(recipeId => this.recipesService.deleteRecipe(recipeId)),
-          takeUntil(this._unsubscribe)
-        ).subscribe(result => {
-          setTimeout(() => this.router.navigate(['/home']),200)
-        });
+        this._recipeFacadeService.deleteRecipe(recipe.id);
       }
     });
 

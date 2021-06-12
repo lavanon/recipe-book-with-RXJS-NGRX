@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { RecipesService } from 'src/app/services/recipes.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { filter, takeUntil, tap } from 'rxjs/operators';
+import { RecipeFacadeService } from 'src/app/store/recipe/recipe-facade.service';
 import { RecipeModel } from '../../../../../shared/models/recipe.model';
 
 @Component({
@@ -8,16 +9,30 @@ import { RecipeModel } from '../../../../../shared/models/recipe.model';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss']
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, OnDestroy  {
+
+  public recipes$: Observable<RecipeModel[]>;
+  private _unsubscribe = new Subject();
   constructor(
-    private recipesService: RecipesService,
+    private recipeFacadeService: RecipeFacadeService
   ) { }
 
-  public recipes$ = this.recipesService.recipes$;
-
   ngOnInit(): void {
-    this.recipesService.getRecipes();
-    this.recipesService.selected$ = new BehaviorSubject<RecipeModel>(undefined);
+
+    this.recipes$ =
+      this.recipeFacadeService.recipes$.pipe(
+        filter(recipes => !!recipes),
+        tap(data => console.log(data)),
+        takeUntil(this._unsubscribe)
+      )
+
+    this.recipeFacadeService.getRecipes();
   }
+
+  ngOnDestroy() {
+    this._unsubscribe.next(null);
+    this._unsubscribe.complete();
+  }
+
 
 }

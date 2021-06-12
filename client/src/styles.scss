@@ -2,3 +2,19 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.goodToast {
+  background-color: green;
+  color: white;
+  .mat-simple-snackbar-action {
+    color: pink;
+  }
+}
+
+.badToast {
+  background-color: red;
+  color: white;
+  .mat-simple-snackbar-action {
+    color: white;
+  }
+}

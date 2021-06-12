@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { filter, map, switchMap, take, tap } from 'rxjs/operators';
-import { RecipesService } from 'src/app/services/recipes.service';
+import { filter } from 'rxjs/operators';
 import { IngredientModel } from '../../../../../shared/models/ingredient.model';
 import { RecipeModel } from '../../../../../shared/models/recipe.model';
 import { MatDialog } from '@angular/material/dialog';
 import { EditCoverImageModalComponent } from 'src/app/components/edit-cover-image-modal/edit-cover-image-modal.component';
+import { RecipeFacadeService } from 'src/app/store/recipe/recipe-facade.service';
 
 enum CreateFormControlNames {
   Title = 'title',
@@ -38,12 +37,10 @@ export class CreatePage implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private recipesService: RecipesService,
-    private router: Router,
     private dialog: MatDialog,
-  ) { }
+    private recipeFacadeService: RecipeFacadeService
 
-  public recipe$ = this.recipesService.selected$;
+  ) { }
 
   ngOnInit(): void {
     this.initializeForm()
@@ -89,15 +86,16 @@ export class CreatePage implements OnInit {
       steps: this.form.get(CreateFormControlNames.Steps).value,
       ingredients: this.form.get(CreateFormControlNames.Ingredients).value,
       additionalImageUrls: this.form.get(CreateFormControlNames.AdditionalImages).value,
-    };
+    }
+    this.recipeFacadeService.addRecipe(nextRecipe);
 
-    this.recipe$.pipe(
-      take(1),
-      switchMap(recipe => {
-        return this.recipesService.getRecipeObservableForCreate(nextRecipe);
-      }),
-      tap(() => this.router.navigate([`./recipes/${nextRecipe.id}`]))
-    ).subscribe();
+
+    // this.recipe$.pipe(
+    //   take(1),
+    //   switchMap(recipe => {
+    //     return this.recipesService.getRecipeObservableForCreate(nextRecipe);
+    //   }),
+    // ).subscribe();
     this.form.reset();
   }
 

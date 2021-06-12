@@ -8,6 +8,7 @@ import { RecipeModel } from '../../../../../shared/models/recipe.model';
 import { Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { EditCoverImageModalComponent } from 'src/app/components/edit-cover-image-modal/edit-cover-image-modal.component';
+import { RecipeFacadeService } from 'src/app/store/recipe/recipe-facade.service';
 
 enum EditFormControlNames {
   Title = 'title',
@@ -46,6 +47,7 @@ export class EditPage implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog,
+    private _recipeFacadeService: RecipeFacadeService,
   ) { }
 
 
@@ -54,6 +56,11 @@ export class EditPage implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.setUpDataSub();
     this.initializeForm();
+
+    this.id$.pipe(
+      tap(recipeId => this.recipesService.getOneRecipe(recipeId)),
+      takeUntil(this._unsubscribe)
+    ).subscribe();
   }
 
   ngOnDestroy() {
@@ -94,8 +101,9 @@ export class EditPage implements OnInit, OnDestroy {
     });
   }
 
-  public onClickSave() {
+  public onClickSave(id: number ) {
     const nextRecipe: Partial<RecipeModel> = {
+      id: id,
       title: this.form.get(EditFormControlNames.Title).value,
       description: this.form.get(EditFormControlNames.Description).value,
       coverImageUrl: this.form.get(EditFormControlNames.CoverImage).value,
@@ -104,14 +112,16 @@ export class EditPage implements OnInit, OnDestroy {
       additionalImageUrls: this.form.get(EditFormControlNames.AdditionalImages).value,
     };
 
-    this.recipe$.pipe(
-      take(1),
-      switchMap(recipe => {
-        return this.recipesService.getRecipeObservableForUpdating(recipe.id, nextRecipe)
-      }),
-      tap(() => this.router.navigate(['../'], { relativeTo: this.route })),
-      takeUntil(this._unsubscribe)
-    ).subscribe();
+    this._recipeFacadeService.updateRecipe(nextRecipe)
+
+    // this.recipe$.pipe(
+    //   take(1),
+    //   switchMap(recipe => {
+    //     return this.recipesService.getRecipeObservableForUpdating(recipe.id, nextRecipe)
+    //   }),
+    //   tap(() => this.router.navigate(['../'], { relativeTo: this.route })),
+    //   takeUntil(this._unsubscribe)
+    // ).subscribe();
   }
 
   public get ingredientControls() {
@@ -163,11 +173,11 @@ export class EditPage implements OnInit, OnDestroy {
       filter(recipe => !!recipe),
       tap(recipe => {
         this.form = this.fb.group({
-          [EditFormControlNames.Title]: [recipe?.title],
-          [EditFormControlNames.Description]: [recipe?.description],
-          [EditFormControlNames.CoverImage]: [recipe.coverImageUrl],
+          [EditFormControlNames.Title]: [recipe?.title] ,
+          [EditFormControlNames.Description]: [recipe?.description] ,
+          [EditFormControlNames.CoverImage]: [recipe.coverImageUrl] ,
           [EditFormControlNames.NextStep]: [undefined],
-          [EditFormControlNames.Steps]: this.fb.array([...recipe?.steps]),
+          [EditFormControlNames.Steps]: this.fb.array([...recipe?.steps] ),
           [EditFormControlNames.NextIngredient]: this.fb.group({
             [IngredientSubFormControlNames.Name]: [undefined],
             [IngredientSubFormControlNames.Quantity]: [undefined],

@@ -1,5 +1,5 @@
-<div class="edit">
-  <form [formGroup]="form" *ngIf="form && recipe$ | async as recipe">
+<div class="edit" *ngIf="form && recipe$ | async as recipe">
+  <form [formGroup]="form" >
     <div class="edit__top">
       <div class="edit__top__left">
         <mat-form-field appearance="outline" class="connection-status-filters__item">
@@ -84,8 +84,9 @@
     <app-step [steps]="steps" [canDelete]="true" [isStationary]="false" (delete)="onDeleteStep($event)"></app-step>
 
     <mat-divider></mat-divider>
+    <div class="edit__actions">
+      <button mat-raised-button color="primary" (click)="onClickSave(recipe.id)">Save</button>
+    </div>
   </form>
-  <div class="edit__actions">
-    <button mat-raised-button color="primary" (click)="onClickSave()">Save</button>
-  </div>
+
 </div>
