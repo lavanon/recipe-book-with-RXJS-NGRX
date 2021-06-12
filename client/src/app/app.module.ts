@@ -32,6 +32,12 @@ import { ImageModalComponent } from './components/image-modal/image-modal.compon
 import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
+// ngrx
+import { StoreModule, ActionReducer } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+import { StoreDevtoolsModule, RECOMPUTE } from "@ngrx/store-devtools";
+import { StoreRouterConnectingModule, RouterState } from "@ngrx/router-store";
+import { environment } from 'src/environments/environment';
 export const APPLICATION_MAT_IMPORTS = [
   MatToolbarModule,
   MatButtonModule,
@@ -72,6 +78,11 @@ export const APPLICATION_MAT_IMPORTS = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot(),
+    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 25 }) : [],
+
     ...APPLICATION_MAT_IMPORTS,
   ],
   providers: [],
