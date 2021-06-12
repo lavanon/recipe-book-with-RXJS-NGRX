@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs/internal/Subject';
+import { Subject } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { ConfirmDeleteModalComponent } from 'src/app/components/confirm-delete-modal/confirm-delete-modal.component';
 import { ImageModalComponent } from 'src/app/components/image-modal/image-modal.component';
