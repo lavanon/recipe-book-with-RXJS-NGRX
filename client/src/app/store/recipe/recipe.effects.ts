@@ -49,6 +49,24 @@ export class RecipeEffects {
         );
     }
 
+    private getOneRecipes() {
+      return createEffect(() =>
+          this._actions.pipe(
+              ofType(RecipeActions.getOneRecipesRequestStarted),
+              mergeMap(({ recipeId }) =>
+                  this._recipeService.getOneRecipe(recipeId).pipe(
+                      map((recipeModel: RecipeModel) =>
+                          RecipeActions.getOneRecipesRequestSuccess({ recipeModel })
+                      ),
+                      catchError((error) =>
+                          of(RecipeActions.getOneRecipesRequestFailure({ payload: error }))
+                      )
+                  )
+              )
+          )
+      );
+  }
+
     private addRecipe() {
       return createEffect(() =>
           this._actions.pipe(
@@ -139,8 +157,20 @@ export class RecipeEffects {
               map(({ recipeModel: payload }) =>
                   RecipeActions.upsertRecipes({ payload })
               ),
-          )
+          ),
       );
+  }
+  private upsertOneRecipe() {
+    return createEffect(() =>
+        this._actions.pipe(
+            ofType(
+              RecipeActions.getOneRecipesRequestSuccess,
+            ),
+            map(({ recipeModel: payload }) =>
+              RecipeActions.upsertOneRecipe({ payload })
+            ),
+        ),
+    );
   }
 
   private updateRecipe() {
@@ -166,9 +196,11 @@ export class RecipeEffects {
             RecipeActions.addRecipeRequestFailure,
             RecipeActions.patchRecipeRequestFailure,
             RecipeActions.removeRecipeRequestFailure,
+            RecipeActions.getOneRecipesRequestFailure
           ),
           tap(recipe => this.openSnackBar(`Um, I dunno what happened...`, false)),
-        )
+        ),
+        { dispatch: false }
     );
   }
 
@@ -183,7 +215,5 @@ export class RecipeEffects {
       panelClass: isPositive? ["goodToast"] : ["badToast"]
     });
   }
-
-
 }
 

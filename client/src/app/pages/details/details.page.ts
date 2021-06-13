@@ -1,11 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { map, takeUntil, tap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ConfirmDeleteModalComponent } from 'src/app/components/confirm-delete-modal/confirm-delete-modal.component';
 import { ImageModalComponent } from 'src/app/components/image-modal/image-modal.component';
-import { RecipesService } from 'src/app/services/recipes.service';
 import { RecipeFacadeService } from 'src/app/store/recipe/recipe-facade.service';
 import { RecipeModel } from '../../../../../shared/models/recipe.model';
 
@@ -14,51 +12,30 @@ import { RecipeModel } from '../../../../../shared/models/recipe.model';
   templateUrl: './details.page.html',
   styleUrls: ['./details.page.scss']
 })
-export class DetailsPage implements OnInit, OnDestroy {
-  private readonly _unsubscribe = new Subject();
+export class DetailsPage implements OnInit {
+  public recipe$: Observable<RecipeModel> = this._recipeFacadeService.recipe$;
 
   constructor(
-    private recipesService: RecipesService,
     private route: ActivatedRoute,
-    private router: Router,
     private dialog: MatDialog,
     private _recipeFacadeService: RecipeFacadeService
 
-  ) { }
-
-  public recipe$ = this.recipesService.selected$;
+  ) {
+    this._recipeFacadeService.getOneRecipe();
+  }
 
   ngOnInit(): void {
-    this.id$.pipe(
-      tap(recipeId => this.recipesService.getOneRecipe(recipeId)),
-      takeUntil(this._unsubscribe)
-    ).subscribe();
-  }
-
-  ngOnDestroy() {
-    this._unsubscribe.next(null);
-    this._unsubscribe.complete();
-  }
-
-  private get id$() {
-    return this.route.paramMap.pipe(
-      map(params => params.get('id')),
-    );
   }
 
   public deleteRecipe( recipe: RecipeModel) {
     const confirmDialog = this.dialog.open(ConfirmDeleteModalComponent, {
-      data: {
-        title: `Are you sure you want to delete your ${recipe.title} recipe?`
-      }
+      data: {  title: `Are you sure you want to delete your ${recipe.title} recipe?` }
     });
-
     confirmDialog.afterClosed().subscribe(result => {
       if (result === true) {
         this._recipeFacadeService.deleteRecipe(recipe.id);
       }
     });
-
   }
 
   public clickImage(imageUrl: string) {

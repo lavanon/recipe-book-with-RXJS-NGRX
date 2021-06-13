@@ -7,9 +7,13 @@ export enum RecipeActionTypes {
     GetRecipesRequestSuccess = "[Recipes] GET_RECIPES_REQUEST_SUCCESS",
     GetRecipesRequestFailure = "[Recipes] GET_RECIPES_REQUEST_FAILURE",
 
-    AddRecipeRequestStarted = "[Recipes] ADD_COUPLING_REQUEST_STARTED",
-    AddRecipeRequestSuccess = "[Recipes] ADD_COUPLING_REQUEST_SUCCESS",
-    AddRecipeRequestFailure = "[Recipes] ADD_COUPLING_REQUEST_FAILURE",
+    GetOneRecipesRequestStarted = "[Recipes] GET_ONE_RECIPES_REQUEST_STARTED",
+    GetOneRecipesRequestSuccess = "[Recipes] GET_ONE_RECIPES_REQUEST_SUCCESS",
+    GetOneRecipesRequestFailure = "[Recipes] GET_ONE_RECIPES_REQUEST_FAILURE",
+
+    AddRecipeRequestStarted = "[Recipes] ADD_RECIPE_REQUEST_STARTED",
+    AddRecipeRequestSuccess = "[Recipes] ADD_RECIPE_REQUEST_SUCCESS",
+    AddRecipeRequestFailure = "[Recipes] ADD_RECIPE_REQUEST_FAILURE",
 
     PatchRecipeRequestStarted = "[Recipes] PATCH_RECIPE_REQUEST_STARTED",
     PatchRecipeRequestSuccess = "[Recipes] PATCH_RECIPE_REQUEST_SUCCESS",
@@ -23,8 +27,8 @@ export enum RecipeActionTypes {
     AddRecipes = "[Recipes] ADD_RECIPES",
     RemoveRecipe = "[Recipes] REMOVE_RECIPE",
     UpsertRecipes = "[Recipes] UPSERT_RECIPES",
-    UpdateRecipe = "[Recipes] UPDATE_COUPLING",
-    UpsertRecipe = "[Recipes] UPSERT_COUPLING",
+    UpdateRecipe = "[Recipes] UPDATE_RECIPE",
+    UpsertRecipe = "[Recipes] UPSERT_RECIPE",
 
   }
 
@@ -39,6 +43,21 @@ export const getRecipesRequestSuccess = createAction(
 export const getRecipesRequestFailure = createAction(
     RecipeActionTypes.GetRecipesRequestFailure,
     props<{payload: any }>()
+);
+
+// Get One recipe
+export const getOneRecipesRequestStarted = createAction(
+  RecipeActionTypes.GetOneRecipesRequestStarted,
+  (   recipeId: number | string,
+    ) => ({ recipeId })
+);
+export const getOneRecipesRequestSuccess = createAction(
+  RecipeActionTypes.GetOneRecipesRequestSuccess,
+  props<{recipeModel: RecipeModel}>()
+);
+export const getOneRecipesRequestFailure = createAction(
+  RecipeActionTypes.GetOneRecipesRequestFailure,
+  props<{payload: any }>()
 );
 
 // Add Recipe
@@ -95,10 +114,7 @@ export const addRecipes = createAction(
   RecipeActionTypes.AddRecipes,
   props<{ payload: RecipeModel[] }>()
 );
-export const upsertRecipes = createAction(
-  RecipeActionTypes.UpsertRecipes,
-  props<{ payload: RecipeModel[] }>()
-);
+
 export const removeRecipe = createAction(
     RecipeActionTypes.RemoveRecipe,
     props<{ payload: string }>()
@@ -108,7 +124,11 @@ export const updateRecipe = createAction(
     props<{ payload: RecipeModel }>()
 );
 // upsert
-export const upsertRecipe = createAction(
+export const upsertOneRecipe = createAction(
     RecipeActionTypes.UpsertRecipe,
     props<{ payload: RecipeModel }>()
+);
+export const upsertRecipes = createAction(
+  RecipeActionTypes.UpsertRecipes,
+  props<{ payload: RecipeModel[] }>()
 );

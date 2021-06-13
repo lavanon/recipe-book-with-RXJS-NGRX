@@ -86,6 +86,7 @@ export const APPLICATION_MAT_IMPORTS = [
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 25 }) : [],
     ...APPLICATION_MAT_IMPORTS,
     RecipeStoreModule
+    RouterStoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
