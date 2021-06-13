@@ -21,15 +21,8 @@ export class RecipesService {
     return this.http.get<Array<RecipeModel>>(this.baseUrl);
   }
 
-  // public getOneRecipe(id: number | string): Observable<RecipeModel> {
-  //   return this.http.get<RecipeModel>(`${this.baseUrl}${id}`);
-  // }
-
-  public getOneRecipe(id: number | string): void {
-    const url = `${this.API_BASE_URL}/recipes/${id}`;
-    this.http.get<RecipeModel>(url).pipe(
-      tap(recipe => this.selected$.next(recipe))
-    ).subscribe();
+  public getOneRecipe(id: number | string): Observable<RecipeModel> {
+    return this.http.get<RecipeModel>(`${this.baseUrl}${id}`);
   }
 
   public createRecipe(newRecipe: RecipeModel): Observable<RecipeModel> {
