@@ -2,7 +2,9 @@ import { Dictionary, EntityState } from "@ngrx/entity";
 import { createFeatureSelector, createSelector, MemoizedSelector } from "@ngrx/store";
 import { recipeAdapter } from "./recipe.adapter";
 import { RecipeModel } from "../../../../../shared/models/recipe.model";
+
 const { selectAll, selectEntities } = recipeAdapter.getSelectors();
+
 const selectRecipesState = createFeatureSelector<EntityState<RecipeModel>>("recipes");
 
 export const selectAllRecipes: MemoizedSelector<
