@@ -40,6 +40,31 @@ import { StoreDevtoolsModule, RECOMPUTE } from "@ngrx/store-devtools";
 import { StoreRouterConnectingModule, RouterState } from "@ngrx/router-store";
 import { environment } from 'src/environments/environment';
 import { RecipeStoreModule } from './store/recipe/recipe-store.module';
+import { RouterStoreModule } from './store/router/router-store.module';
+import { CustomSerializer } from './store/router/router.serializer';
+import { reducers } from './store/router/router.reducer';
+
+/**
+ * NGRX
+ */
+ export function logger(reducer: ActionReducer<object>): ActionReducer<object> {
+  return (state, action) => {
+      const result = reducer(state, action);
+
+      if (action.type !== RECOMPUTE) {
+          console.groupCollapsed(action.type);
+          console.log(`prev state`, state);
+          console.log(`action`, action);
+          console.log(`next state`, result);
+          console.groupEnd();
+      }
+      return result;
+  };
+}
+
+export const developmentReducers = [logger];
+export const metaReducers = environment.production ? [] : developmentReducers;
+
 export const APPLICATION_MAT_IMPORTS = [
   MatToolbarModule,
   MatButtonModule,
@@ -80,12 +105,17 @@ export const APPLICATION_MAT_IMPORTS = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}),
+
+    // NGRX
+    StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot(),
-    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 25 }) : [],
+    StoreRouterConnectingModule.forRoot({
+      routerState: RouterState.Minimal,
+      serializer: CustomSerializer
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 15 }) : [],
     ...APPLICATION_MAT_IMPORTS,
-    RecipeStoreModule
+    RecipeStoreModule,
     RouterStoreModule
   ],
   providers: [],
