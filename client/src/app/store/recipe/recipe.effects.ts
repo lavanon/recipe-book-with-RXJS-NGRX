@@ -6,19 +6,24 @@ import { RecipesService } from 'src/app/services/recipes.service';
 import { RecipeModel } from "../../../../../shared/models/recipe.model";
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 @Injectable()
 export class RecipeEffects {
+    // connect to back end
     public getRecipes$ = this.getRecipes();
-
     public addRecipeSuccess$ = this.addRecipeSuccess();
     public addRecipe$ = this.addRecipe();
     public patchRecipe$ = this.patchRecipe();
+    public getOneRecipes$ = this.getOneRecipes();
+
+    // successes and clean up
     public updateRecipe$ = this.updateRecipe();
     public deleteRecipe$ = this.deleteRecipe();
     public removeRecipe$ = this.removeRecipe();
-    public upsertRecipe$ = this.upsertRecipe();
+    public upsertRecipes$ = this.upsertRecipes();
+    public upsertOneRecipe$ = this.upsertOneRecipe();
 
+    // error handling
     public somethingFailed$ = this.somethingFailed();
 
     constructor(
@@ -26,9 +31,6 @@ export class RecipeEffects {
         private _recipeService: RecipesService,
         private _snackBar: MatSnackBar,
         private _router: Router,
-        private _route: ActivatedRoute,
-
-
     ) { }
 
     private getRecipes() {
@@ -102,7 +104,6 @@ export class RecipeEffects {
         );
     }
 
-
     private deleteRecipe() {
         return createEffect(() =>
             this._actions.pipe(
@@ -125,17 +126,16 @@ export class RecipeEffects {
         return createEffect(() =>
             this._actions.pipe(
                 ofType(RecipeActions.removeRecipeRequestSuccess),
+                map(({ recipeId: payload }) => {
+                    return RecipeActions.removeRecipe({ payload: payload });
+                }),
                 tap(() => {
                   this.openSnackBar(`I was getting sick of that recipe too...`);
                   this._router.navigate(['/home']);
                 }),
-                map(({ recipeId: payload }) => {
-                    return RecipeActions.removeRecipe({ payload: payload });
-                })
-            )
+            ),
         );
     }
-
 
     private addRecipeSuccess() {
       return createEffect(() =>
@@ -144,11 +144,12 @@ export class RecipeEffects {
               tap(recipe => this.openSnackBar(`Your ${recipe.createdRecipe.title} recipe looks yum!`)),
               tap(recipe => this._router.navigate([`./recipes/${recipe.createdRecipe.id}`])),
               map(() => RecipeActions.getRecipesRequestStarted())
-          )
+          ),
+          { dispatch: false }
       );
     }
 
-    private upsertRecipe() {
+    private upsertRecipes() {
       return createEffect(() =>
           this._actions.pipe(
               ofType(
@@ -180,11 +181,10 @@ export class RecipeEffects {
             map(({ recipe: payload }) =>
                 RecipeActions.updateRecipe({ payload })
             ),
-            tap(recipe => this.openSnackBar(`The new additions look nice!`)),
-            tap(() => this._router.navigate(['../'], { relativeTo: this._route })),
-
-
-        )
+            tap(recipe =>  this._router.navigate([`./recipes/${recipe.payload.id}`])),
+            tap(() => this.openSnackBar(`The new additions look nice!`)),
+        ),
+        { dispatch: false }
     );
   }
 

@@ -7,6 +7,7 @@ export abstract class RecipeFacadeService {
 
     abstract getRecipes( recipeId?: string | number): void;
     abstract getOneRecipe( recipeId?: string | number): void;
+    abstract updateRecipe( nextRecipe: Partial<RecipeModel>): void;
     abstract deleteRecipe( recipeId: string | number): void;
     abstract addRecipe( recipe: RecipeModel): void;
 }
