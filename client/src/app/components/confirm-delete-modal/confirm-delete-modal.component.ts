@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-
 @Component({
   selector: 'app-confirm-delete-modal',
   templateUrl: './confirm-delete-modal.component.html',
@@ -20,5 +19,4 @@ export class ConfirmDeleteModalComponent implements OnInit {
   public onClickCancel() {
     this.dialogRef.close();
   }
-
 }

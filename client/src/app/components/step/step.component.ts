@@ -17,16 +17,15 @@ export class StepComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   public onClickDelete(index: number) {
     this.delete.emit(index);
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  public drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.steps, event.previousIndex, event.currentIndex);
-}
+  }
 
-  super(index) {
+  public super(index) {
     return index + 1;
   }
 }

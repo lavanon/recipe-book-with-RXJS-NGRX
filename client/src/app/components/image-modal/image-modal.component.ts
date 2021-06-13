@@ -19,5 +19,4 @@ export class ImageModalComponent implements OnInit {
   public onClickCancel() {
     this.dialogRef.close();
   }
-
 }

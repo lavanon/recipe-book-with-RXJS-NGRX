@@ -1,27 +1,13 @@
-<div
-  class="steps-list"
-  cdkDropList
+<div class="steps-list" cdkDropList
   [cdkDropListDisabled]="isStationary"
   (cdkDropListDropped)="drop($event)">
-  <div
-    [matBadge]="super(i)"
-    matBadgePosition="before"
-    class="steps-list__box"
-    *ngFor="let step of steps; let i = index ;"
-    cdkDrag>
-    <div
-      class="steps-list__box__placeholder"
-      *cdkDragPlaceholder>
-    </div>
+  <div [matBadge]="super(i)" matBadgePosition="before"
+    class="steps-list__box" cdkDrag
+    *ngFor="let step of steps; let i = index ;">
+    <div class="steps-list__box__placeholder" *cdkDragPlaceholder> </div>
     {{ step }}
-    <button
-      mat-icon-button
-      (click)="onClickDelete(i)"
-      *ngIf="canDelete">
-      <mat-icon
-        mat-icon-button
-        color="warn"
-        matTooltip="Delete steps"
+    <button mat-icon-button (click)="onClickDelete(i)" *ngIf="canDelete">
+      <mat-icon  mat-icon-button color="warn" matTooltip="Delete steps"
         matTooltipPosition="right">
         delete
       </mat-icon>

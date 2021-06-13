@@ -23,8 +23,7 @@ export class EditCoverImageModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onClickSubmit() {
+  public onClickSubmit() {
     this.dialogRef.close(this.newCoverImageUrl);
   }
-
 }

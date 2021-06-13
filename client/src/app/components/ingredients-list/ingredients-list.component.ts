@@ -23,8 +23,7 @@ export class IngredientsListComponent implements OnInit {
     this.delete.emit(index);
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  public drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.ingredients, event.previousIndex, event.currentIndex);
   }
-
 }

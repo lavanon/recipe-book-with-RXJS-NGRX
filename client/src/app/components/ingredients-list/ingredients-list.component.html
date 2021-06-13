@@ -1,5 +1,4 @@
-
-  <div  class="ingredient-list" [cdkDropListDisabled]="isStationary" cdkDropList (cdkDropListDropped)="drop($event)">
+<div  class="ingredient-list" [cdkDropListDisabled]="isStationary" cdkDropList (cdkDropListDropped)="drop($event)">
   <div class="ingredient-list__box" *ngFor="let ingredient of ingredients; let i = index;" cdkDrag>
     <div class="ingredient-list__box__placeholder" *cdkDragPlaceholder></div>
     {{ ingredient.quantity }} {{ ingredient.units }} of {{ ingredient.name }}

@@ -88,15 +88,6 @@ export class CreatePage implements OnInit {
       additionalImageUrls: this.form.get(CreateFormControlNames.AdditionalImages).value,
     }
     this.recipeFacadeService.addRecipe(nextRecipe);
-
-
-    // this.recipe$.pipe(
-    //   take(1),
-    //   switchMap(recipe => {
-    //     return this.recipesService.getRecipeObservableForCreate(nextRecipe);
-    //   }),
-    // ).subscribe();
-    this.form.reset();
   }
 
   public get ingredientControls() {
@@ -153,5 +144,4 @@ export class CreatePage implements OnInit {
       [CreateFormControlNames.AdditionalImages]: this.fb.array([]),
     });
   }
-
 }
