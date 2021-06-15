@@ -7,12 +7,6 @@
 - refactoring the code
 - 
 
-
-
-
-
-
-
 # Recipe Book FE Challenge
 
 - [Prompt](#prompt)

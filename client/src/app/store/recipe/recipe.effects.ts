@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { of } from "rxjs";
-import { catchError, map, mergeMap, switchMap, tap } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
+import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { RecipeActions } from '.';
 import { RecipesService } from 'src/app/services/recipes.service';
-import { RecipeModel } from "../../../../../shared/models/recipe.model";
+import { RecipeModel } from '../../../../../shared/models/recipe.model';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
-import { Router } from "@angular/router";
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 @Injectable()
 export class RecipeEffects {
     // connect to back end
@@ -127,7 +127,7 @@ export class RecipeEffects {
             this._actions.pipe(
                 ofType(RecipeActions.removeRecipeRequestSuccess),
                 map(({ recipeId: payload }) => {
-                    return RecipeActions.removeRecipe({ payload: payload });
+                    return RecipeActions.removeRecipe({ payload });
                 }),
                 tap(() => {
                   this.openSnackBar(`I was getting sick of that recipe too...`);
@@ -209,10 +209,10 @@ export class RecipeEffects {
     const verticalPosition: MatSnackBarVerticalPosition = 'top';
 
     this._snackBar.open(message, 'dismiss', {
-      horizontalPosition: horizontalPosition,
+      horizontalPosition,
       duration: 10000,
-      verticalPosition: verticalPosition,
-      panelClass: isPositive? ["goodToast"] : ["badToast"]
+      verticalPosition,
+      panelClass: isPositive ? ['goodToast'] : ['badToast']
     });
   }
 }

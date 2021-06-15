@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ConfirmDeleteModalComponent } from 'src/app/components/confirm-delete-modal/confirm-delete-modal.component';
 import { ImageModalComponent } from 'src/app/components/image-modal/image-modal.component';
@@ -16,7 +15,6 @@ export class DetailsPage implements OnInit {
   public recipe$: Observable<RecipeModel> = this._recipeFacadeService.recipe$;
 
   constructor(
-    private route: ActivatedRoute,
     private dialog: MatDialog,
     private _recipeFacadeService: RecipeFacadeService
 
@@ -40,9 +38,9 @@ export class DetailsPage implements OnInit {
 
   public clickImage(imageUrl: string) {
     const dialogRef = this.dialog.open(ImageModalComponent, {
-      maxWidth: "1200px",
-      maxHeight: "800px",
-      data: {imageUrl: imageUrl }
-    })
+      maxWidth: '1200px',
+      maxHeight: '800px',
+      data: {imageUrl }
+    });
   }
 }

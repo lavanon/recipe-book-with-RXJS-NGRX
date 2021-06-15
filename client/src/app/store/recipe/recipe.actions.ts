@@ -1,34 +1,34 @@
-import { createAction, props } from "@ngrx/store";
-import { RecipeModel } from "../../../../../shared/models/recipe.model";
+import { createAction, props } from '@ngrx/store';
+import { RecipeModel } from '../../../../../shared/models/recipe.model';
 
 export enum RecipeActionTypes {
 
-    GetRecipesRequestStarted = "[Recipes] GET_RECIPES_REQUEST_STARTED",
-    GetRecipesRequestSuccess = "[Recipes] GET_RECIPES_REQUEST_SUCCESS",
-    GetRecipesRequestFailure = "[Recipes] GET_RECIPES_REQUEST_FAILURE",
+    GetRecipesRequestStarted = '[Recipes] GET_RECIPES_REQUEST_STARTED',
+    GetRecipesRequestSuccess = '[Recipes] GET_RECIPES_REQUEST_SUCCESS',
+    GetRecipesRequestFailure = '[Recipes] GET_RECIPES_REQUEST_FAILURE',
 
-    GetOneRecipesRequestStarted = "[Recipes] GET_ONE_RECIPES_REQUEST_STARTED",
-    GetOneRecipesRequestSuccess = "[Recipes] GET_ONE_RECIPES_REQUEST_SUCCESS",
-    GetOneRecipesRequestFailure = "[Recipes] GET_ONE_RECIPES_REQUEST_FAILURE",
+    GetOneRecipesRequestStarted = '[Recipes] GET_ONE_RECIPES_REQUEST_STARTED',
+    GetOneRecipesRequestSuccess = '[Recipes] GET_ONE_RECIPES_REQUEST_SUCCESS',
+    GetOneRecipesRequestFailure = '[Recipes] GET_ONE_RECIPES_REQUEST_FAILURE',
 
-    AddRecipeRequestStarted = "[Recipes] ADD_RECIPE_REQUEST_STARTED",
-    AddRecipeRequestSuccess = "[Recipes] ADD_RECIPE_REQUEST_SUCCESS",
-    AddRecipeRequestFailure = "[Recipes] ADD_RECIPE_REQUEST_FAILURE",
+    AddRecipeRequestStarted = '[Recipes] ADD_RECIPE_REQUEST_STARTED',
+    AddRecipeRequestSuccess = '[Recipes] ADD_RECIPE_REQUEST_SUCCESS',
+    AddRecipeRequestFailure = '[Recipes] ADD_RECIPE_REQUEST_FAILURE',
 
-    PatchRecipeRequestStarted = "[Recipes] PATCH_RECIPE_REQUEST_STARTED",
-    PatchRecipeRequestSuccess = "[Recipes] PATCH_RECIPE_REQUEST_SUCCESS",
-    PatchRecipeRequestFailure = "[Recipes] PATCH_RECIPE_REQUEST_FAILURE",
+    PatchRecipeRequestStarted = '[Recipes] PATCH_RECIPE_REQUEST_STARTED',
+    PatchRecipeRequestSuccess = '[Recipes] PATCH_RECIPE_REQUEST_SUCCESS',
+    PatchRecipeRequestFailure = '[Recipes] PATCH_RECIPE_REQUEST_FAILURE',
 
-    RemoveRecipeRequestStarted = "[Recipes] REMOVE_RECIPE_REQUEST_STARTED",
-    RemoveRecipeRequestSuccess = "[Recipes] REMOVE_RECIPE_REQUEST_SUCCESS",
-    RemoveRecipeRequestFailure = "[Recipes] REMOVE_RECIPE_REQUEST_FAILURE",
+    RemoveRecipeRequestStarted = '[Recipes] REMOVE_RECIPE_REQUEST_STARTED',
+    RemoveRecipeRequestSuccess = '[Recipes] REMOVE_RECIPE_REQUEST_SUCCESS',
+    RemoveRecipeRequestFailure = '[Recipes] REMOVE_RECIPE_REQUEST_FAILURE',
 
-    AddRecipe = "[Recipes] ADD_RECIPE",
-    AddRecipes = "[Recipes] ADD_RECIPES",
-    RemoveRecipe = "[Recipes] REMOVE_RECIPE",
-    UpsertRecipes = "[Recipes] UPSERT_RECIPES",
-    UpdateRecipe = "[Recipes] UPDATE_RECIPE",
-    UpsertRecipe = "[Recipes] UPSERT_RECIPE",
+    AddRecipe = '[Recipes] ADD_RECIPE',
+    AddRecipes = '[Recipes] ADD_RECIPES',
+    RemoveRecipe = '[Recipes] REMOVE_RECIPE',
+    UpsertRecipes = '[Recipes] UPSERT_RECIPES',
+    UpdateRecipe = '[Recipes] UPDATE_RECIPE',
+    UpsertRecipe = '[Recipes] UPSERT_RECIPE',
 
   }
 
@@ -114,7 +114,6 @@ export const addRecipes = createAction(
   RecipeActionTypes.AddRecipes,
   props<{ payload: RecipeModel[] }>()
 );
-
 export const removeRecipe = createAction(
     RecipeActionTypes.RemoveRecipe,
     props<{ payload: string }>()
@@ -123,7 +122,6 @@ export const updateRecipe = createAction(
     RecipeActionTypes.UpdateRecipe,
     props<{ payload: RecipeModel }>()
 );
-// upsert
 export const upsertOneRecipe = createAction(
     RecipeActionTypes.UpsertRecipe,
     props<{ payload: RecipeModel }>()

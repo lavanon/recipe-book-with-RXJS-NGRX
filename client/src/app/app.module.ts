@@ -34,10 +34,10 @@ import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/c
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
 // ngrx
-import { StoreModule, ActionReducer } from "@ngrx/store";
-import { EffectsModule } from "@ngrx/effects";
-import { StoreDevtoolsModule, RECOMPUTE } from "@ngrx/store-devtools";
-import { StoreRouterConnectingModule, RouterState } from "@ngrx/router-store";
+import { StoreModule, ActionReducer } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule, RECOMPUTE } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 import { environment } from 'src/environments/environment';
 import { RecipeStoreModule } from './store/recipe/recipe-store.module';
 import { RouterStoreModule } from './store/router/router-store.module';
@@ -47,7 +47,7 @@ import { reducers } from './store/router/router.reducer';
 /**
  * NGRX
  */
- export function logger(reducer: ActionReducer<object>): ActionReducer<object> {
+export function logger(reducer: ActionReducer<object>): ActionReducer<object> {
   return (state, action) => {
       const result = reducer(state, action);
 

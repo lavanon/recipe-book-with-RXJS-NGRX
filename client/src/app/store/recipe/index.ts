@@ -1,4 +1,4 @@
-import * as RecipeActions from "./recipe.actions";
+import * as RecipeActions from './recipe.actions';
 
 export {
     RecipeActions,

@@ -1,5 +1,5 @@
-import { Observable } from "rxjs";
-import { RecipeModel } from "../../../../../shared/models/recipe.model";
+import { Observable } from 'rxjs';
+import { RecipeModel } from '../../../../../shared/models/recipe.model';
 
 export abstract class RecipeFacadeService {
     abstract recipe$: Observable<RecipeModel | undefined>;

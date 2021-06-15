@@ -43,7 +43,7 @@ export class CreatePage implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.initializeForm()
+    this.initializeForm();
   }
 
   public onClickAddIngredient() {
@@ -86,7 +86,7 @@ export class CreatePage implements OnInit {
       steps: this.form.get(CreateFormControlNames.Steps).value,
       ingredients: this.form.get(CreateFormControlNames.Ingredients).value,
       additionalImageUrls: this.form.get(CreateFormControlNames.AdditionalImages).value,
-    }
+    };
     this.recipeFacadeService.addRecipe(nextRecipe);
   }
 
@@ -129,9 +129,9 @@ export class CreatePage implements OnInit {
 
   private initializeForm() {
     this.form = this.fb.group({
-      [CreateFormControlNames.Title]: "",
-      [CreateFormControlNames.Description]: "",
-      [CreateFormControlNames.CoverImage]: "",
+      [CreateFormControlNames.Title]: '',
+      [CreateFormControlNames.Description]: '',
+      [CreateFormControlNames.CoverImage]: '',
       [CreateFormControlNames.NextStep]: [undefined],
       [CreateFormControlNames.Steps]: this.fb.array([]),
       [CreateFormControlNames.NextIngredient]: this.fb.group({

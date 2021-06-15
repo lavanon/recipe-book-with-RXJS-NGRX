@@ -9,7 +9,6 @@ export interface RecipeModel {
   ingredients: IngredientModel[];
   steps: string[];
 }
-
 export interface ItemId {
   id: number | string;
 }

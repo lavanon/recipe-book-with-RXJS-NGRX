@@ -52,9 +52,9 @@ export class EditPage implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      [EditFormControlNames.Title]: "",
-      [EditFormControlNames.Description]:"" ,
-      [EditFormControlNames.CoverImage]: "" ,
+      [EditFormControlNames.Title]: '',
+      [EditFormControlNames.Description]: '' ,
+      [EditFormControlNames.CoverImage]: '' ,
       [EditFormControlNames.NextStep]: [undefined],
       [EditFormControlNames.Steps]: this.fb.array([]),
       [EditFormControlNames.NextIngredient]: this.fb.group({
@@ -109,7 +109,7 @@ export class EditPage implements OnInit, OnDestroy {
 
   public onClickSave(id: number ) {
     const nextRecipe: Partial<RecipeModel> = {
-      id: id,
+      id,
       title: this.form.get(EditFormControlNames.Title).value,
       description: this.form.get(EditFormControlNames.Description).value,
       coverImageUrl: this.form.get(EditFormControlNames.CoverImage).value,
@@ -118,7 +118,7 @@ export class EditPage implements OnInit, OnDestroy {
       additionalImageUrls: this.form.get(EditFormControlNames.AdditionalImages).value,
     };
 
-    this._recipeFacadeService.updateRecipe(nextRecipe)
+    this._recipeFacadeService.updateRecipe(nextRecipe);
   }
 
   public get ingredientControls() {

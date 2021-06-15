@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { RecipeModel } from '../../../../shared/models/recipe.model';
 
 @Injectable({
@@ -11,7 +10,7 @@ export class RecipesService {
   public recipes$ = new BehaviorSubject<Array<RecipeModel>>(undefined);
   public selected$ = new BehaviorSubject<RecipeModel>(undefined);
   private readonly API_BASE_URL = 'http://localhost:4199';
-  private readonly baseUrl = `${this.API_BASE_URL}/recipes/`
+  private readonly baseUrl = `${this.API_BASE_URL}/recipes/`;
 
   constructor(
     private http: HttpClient

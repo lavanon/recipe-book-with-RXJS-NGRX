@@ -1,5 +1,5 @@
-import { Params } from "@angular/router";
-import { Observable } from "rxjs";
+import { Params } from '@angular/router';
+import { Observable } from 'rxjs';
 
 export abstract class RouterFacadeService {
     abstract queryParams$: Observable<Params | undefined>;
