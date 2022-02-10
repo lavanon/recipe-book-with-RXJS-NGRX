@@ -24,7 +24,6 @@
     + [Port](#port-1)
     + [Commands](#commands-1)
 - [API Documentation](#api-documentation)
-- [Shared Directory](#shared-directory)
 
 ---
 
